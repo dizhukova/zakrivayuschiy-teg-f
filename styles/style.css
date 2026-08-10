@@ -21,16 +21,6 @@
   font-variation-settings: "wght" var(--text-wght);
 }
 
-.header__logo,
-.header__title,
-.label,
-.button__text,
-.dialog__title {
-  font-family: var(--accent-font), monospace;
-  font-weight: 400;
-  font-size: var(--accent-font-size);
-}
-
 /* общие стили для header и карточек */
 .block-set {
   margin-inline: auto;
@@ -51,15 +41,18 @@
 }
 
 .header__logo {
+  font-family: var(--accent-font), monospace;
+  font-weight: 400;
   font-size: clamp(3.0625rem, 2.7104rem + 1.5023vw, 4.0625rem);
   text-transform: uppercase;
 }
 
 .header__title {
+  font-family: var(--accent-font), monospace;
+  font-weight: 400;
   font-size: clamp(0.875rem, 0.6769rem + 0.8451vw, 1.4375rem);
   text-transform: uppercase;
 }
-
 
 /* блок с карточками */
 
@@ -79,30 +72,34 @@
 
 .card__image-box {
   position: relative;
+  border-block: var(--common-border);
   inline-size: 100%;
   aspect-ratio: 1 / 1;
-  border-block: var(--common-border);
 }
 
 .card__image {
   display: block;
+  object-fit: cover;
+  object-position: center;
   block-size: 100%;
   inline-size: 100%;
-  object-fit: cover;
 }
 
 .label {
   position: absolute;
   top: 25px;
   right: 25px;
-  text-transform: uppercase;
   opacity: 0.5;
-  mix-blend-mode: hard-light;
+  font-family: var(--accent-font), monospace;
+  font-weight: 400;
+  font-size: var(--accent-font-size);
+  text-transform: uppercase;
   text-shadow:
     -1px 0 var(--base-color),
     0 1px var(--base-color),
     1px 0 var(--base-color),
     0 -1px var(--base-color);
+  mix-blend-mode: hard-light;
 }
 
 @supports (
@@ -110,43 +107,47 @@
     (-webkit-text-stroke: 1px var(--base-color))
 ) {
   .label {
+    text-shadow: none;
     -webkit-text-stroke: 1px var(--base-color);
     text-stroke: 1px var(--base-color);
-    text-shadow: none;
   }
 }
 
 .card__wrapper {
-  padding: 25px;
   display: flex;
   flex-direction: column;
   gap: 25px;
+  padding: 25px;
 }
 
 .card__button-box {
-  align-self: flex-end;
   display: flex;
   align-items: center;
+  align-self: flex-end;
 }
 
 .card__icon-button {
   border: 2px solid transparent;
-  background-color: transparent;
   padding: 0;
+  background-color: transparent;
   transition: border-color 0.3s ease;
   cursor: pointer;
+  block-size: 38px;
 }
 
 .like-icon {
   display: block;
+}
+
+.like-icon .heart {
   transform-origin: center;
 }
 
 .button {
+  position: relative;
   border: var(--common-border);
   background-color: var(--base-color);
   transition: box-shadow 0.3s ease;
-  position: relative;
   cursor: pointer;
 }
 
@@ -158,19 +159,22 @@
 }
 
 .button__text {
-  line-height: 0.9;
   position: relative;
   z-index: 1;
   color: #fff;
+  font-family: var(--accent-font), monospace;
+  font-weight: 400;
+  font-size: var(--accent-font-size);
+  line-height: 0.9;
   mix-blend-mode: difference;
 }
 
 .save-button {
-  margin-inline: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  margin-inline: auto;
   padding: 15px 18px;
 }
 
@@ -202,9 +206,9 @@
   position: fixed;
   inset: 0;
   margin: auto;
+  border: var(--common-border);
   max-inline-size: none;
   inline-size: clamp(21.3125rem, 21.0484rem + 1.1268vw, 22.0625rem);
-  border: var(--common-border);
 }
 
 .dialog[open] {
@@ -225,37 +229,44 @@
 }
 
 .dialog__title-wrap .floppy-icon {
+  flex-shrink: 0;
   width: 39px;
   height: 39px;
-  flex-shrink: 0;
 }
 
 .dialog__title {
+  font-family: var(--accent-font), monospace;
+  font-weight: 400;
+  font-size: var(--accent-font-size);
   line-height: 1.5;
   text-transform: uppercase;
 }
 
 .dialog__button {
+  padding: 0;
   inline-size: 100%;
   block-size: 38px;
-  padding: 0;
+}
+
+.dialog__button .button__text {
+  text-transform: uppercase;
 }
 
 /* эффекты кнопок */
 .button:focus {
-  outline: none;
   box-shadow: 2px 2px 0 var(--accent-color);
+  outline: none;
 }
 
 .button::before {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background-color: var(--accent-color);
+  transition: transform 0.5s ease-in-out;
 
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.5s ease-in-out;
 }
 
 .button:hover::before {
@@ -271,55 +282,30 @@
 }
 
 /* фильтры картинок в карточках */
-.monkey {
+.filter-contrast {
   filter: contrast(120%);
 }
 
-.come-on {
+.filter-bright {
   filter: brightness(150%);
 }
 
-.way {
+.filter-saturate {
   filter: saturate(166%);
 }
 
-.friends {
+.filter-opacity {
   filter: opacity(0.8);
 }
 
-.sheldon {
+.filter-grayscale {
   filter: grayscale(0.8);
 }
 
-.sad {
+.filter-sepia {
   filter: sepia(60%);
 }
 
-.no-brakes {
+.filter-mix {
   filter: opacity(0.8) contrast(150%) brightness(150%);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
